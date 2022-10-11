@@ -1,9 +1,6 @@
 package br.tiposgenericosrodolfo;
 
-
 import javax.swing.JOptionPane;
-import java.util.Scanner;
-
 
 public class App {
 
@@ -11,9 +8,9 @@ public class App {
 
         int quantidadePessoas = 0;
         int quantidadeCidades = 0;
-        int opcao = 0;
         int continua;
 
+        //pergunta a quantidade de pessoas e cidades a serem cadastradas
         quantidadePessoas = Integer.parseInt(JOptionPane.showInputDialog("Digite a quantidade de pessoas que deseja cadastrar: "));
         quantidadeCidades = Integer.parseInt(JOptionPane.showInputDialog("Digite a quantidade de cidades que deseja cadastrar: "));
 
@@ -23,7 +20,7 @@ public class App {
         // Vetor de cidades usando o tipo genérico
         Vetor<Cidade> vetorCidades = new Vetor<Cidade>(quantidadeCidades);
 
-        // Preenchendo o vetor de pessoas, usar o i de index para identificar o objeto
+        // Preenchendo o vetor de pessoas, usar o i para identificar o objeto
         for (int i = 0; i < quantidadePessoas; i++) {
             String nome = JOptionPane.showInputDialog("Digite o nome da pessoa " + (i + 1) + ": ");
             char sexo = JOptionPane.showInputDialog("Digite o sexo (M ou F) da pessoa " + (i + 1) + ": ").charAt(0);
@@ -33,7 +30,7 @@ public class App {
             Pessoa pessoa = new Pessoa(nome, sexo, naturalidade);
             vetorPessoas.setVetor(pessoa, i);
         }
-        // Preencendo o vetor de cidades, usar o i de index para identificar o objeto
+        // Preencendo o vetor de cidades, usar o i para identificar o objeto
         for (int i = 0; i < quantidadeCidades; i++) {
             String cidade = JOptionPane.showInputDialog("Digite o nome da cidade " + (i + 1) + ": ");
             String gentilico = JOptionPane.showInputDialog("Digite o gentilico da cidade " + (i + 1) + ": ");
@@ -46,11 +43,12 @@ public class App {
             // Buscando uma pessoa no vetor de pessoas
             String nomePessoa = JOptionPane.showInputDialog("Digite o nome da pessoa que deseja buscar: ");
             // Percorrendo o vetor de pessoas
+
+            //variaveis boolean para usar nos casos de não achar cidade e pessoa
             boolean achouNome = false;
             boolean achouCidade = false;
             for (int i = 0; i < vetorPessoas.getTamanho(); i++) {
-                // Verificando se o nome da pessoa é igual ao nome da pessoa que está sendo
-                // buscada
+                // Verificando se o nome buscado está no vetor
                 String nome_index = vetorPessoas.getVetor(i).getNome();
 
                 if (nomePessoa.toLowerCase().equals(nome_index.toLowerCase())) {
@@ -102,7 +100,6 @@ public class App {
             JOptionPane.showMessageDialog(null, "Cidade não encontrada");
         }
 
-        // Fechando o Scanner
         continua = JOptionPane.showConfirmDialog(null, "Deseja fazer outra busca?", "FIM DA CONSULTA...", JOptionPane.YES_NO_OPTION);
         } while (continua == JOptionPane.YES_OPTION);
     }
